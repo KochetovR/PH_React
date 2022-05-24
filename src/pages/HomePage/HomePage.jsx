@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { MenuItem } from 'components/MenuItem/MenuItem';
-import { PopupInfo } from 'components/PopupInfo/PopupInfo';
+import MenuItem from 'components/SituationItem';
+import PopupInfo from 'components/PopupInfo';
+import Title from 'components/Title';
 
 import data from 'data/data.json'
 
-import s from './HomePage.module.css'
+import s from './HomePage.module.scss'
 
-export const HomePage = () => {
+const HomePage = () => {
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
     const [descriptionInfo, setdescriptionInfo] = useState('');
 
@@ -20,7 +21,8 @@ export const HomePage = () => {
     }
     return (
         <div className={s.container}>
-            <p className={s.title}>Choose a situation</p>
+            <Title title='Choose a situation'/>
+            
             <div className={s.itemsWrapper}>
                 {data.map( ({title}, index) => (
                     <MenuItem key={title} title={title} onClick={isClickInfoModal} index={index} />
@@ -33,3 +35,5 @@ export const HomePage = () => {
         </div>
     )
 }
+
+export default HomePage;

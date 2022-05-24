@@ -1,0 +1,34 @@
+@import '../../assets/scss/utils/variables';
+
+.linksBlock {
+    display: flex;
+    justify-content: space-between;
+    width: 53%;
+    margin: 0 auto;
+
+    &:not(:last-child){
+        margin-bottom: 20px;
+    }
+
+    @media (min-width: 620px) {
+        width: 50%;
+    }
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid $main-color;
+    background-color: $main-bg-color;
+
+    
+
+    @media (min-width: 620px) {
+        width: 80px;
+        height: 80px;
+    }
+}

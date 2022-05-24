@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import s from './MenuItem.module.css'
+import s from './SituationItem.module.scss'
 
-export function MenuItem({ title, onClick, index }) {
+function SituationItem({ title, onClick, index }) {
     return (
         <button
             type='button'
@@ -21,8 +21,10 @@ export function MenuItem({ title, onClick, index }) {
     )
 }
 
-MenuItem.propTypes = {
+SituationItem.propTypes = {
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
 }
+
+export default SituationItem;

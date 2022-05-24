@@ -1,11 +1,11 @@
 import { createPortal } from 'react-dom';
 import PropTypes from "prop-types";
 
-import s from './PopupInfo.module.css';
+import s from './PopupInfo.module.scss';
 
 const modalRoot = document.querySelector('#root-modal');
 
-export const PopupInfo = ({ onClose, description }) => {
+const PopupInfo = ({ onClose, description }) => {
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
           onClose();
@@ -29,4 +29,6 @@ export const PopupInfo = ({ onClose, description }) => {
 PopupInfo.propTypes = {
     onClose: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
-  };
+};
+
+export default PopupInfo;

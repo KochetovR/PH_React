@@ -1,12 +1,8 @@
-.container {
-    max-width: 480px;
-    padding: 0 8px;
-}
+@import '../../assets/scss/utils/variables';
 
-.title {
-    margin: 30px 0;
-    font-size: 20px;
-    text-align: center;
+.container {
+    max-width: $mobile-middle;
+    padding: 0 8px;
 }
 
 .itemsWrapper {
