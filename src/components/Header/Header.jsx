@@ -1,37 +1,41 @@
-import { NavLink } from "react-router-dom";
+import { useState } from 'react';
 
-import s from './Header.module.css';
+import NavMenu from '../NavMenu/'
+
+import s from './Header.module.scss';
 
 import logo from 'assets/img/logo.png';
 import logo2x from 'assets/img/logo@2x.png';
 import title from 'assets/img/title.png';
 import title2x from 'assets/img/title@2x.png';
-import about from 'assets/img/about.png';
-import about2x from 'assets/img/about@2x.png';
 
+function Header() {
+    const [navMenuisOpened, setNavMenuisOpened] = useState(false)
 
-export function Header() {
+    const isOpenNavMenu = () => {
+        setNavMenuisOpened(true)
+    }
+    const isCloseNavMenu = () => {
+        setNavMenuisOpened(false)
+    }
     return (
         <header className={s.headerContainer}>
-            <div className={s.logoBlock}>
+            <button
+                type="button"
+                className={s.buttonLogo}
+                onClick={isOpenNavMenu}
+            >
                 <img src={logo} alt="logo"
-                    className={s.logo}
                     srcSet={logo2x}
                 />
-                <img src={title} alt="poker helper"
-                    className={s.title}
-                    srcSet={title2x}
-                />
-            </div>
-                {/* <NavLink to="/">Home</NavLink> */}
-            <NavLink to="/about"
-                style={{ width: 38, height: 38 }}
-            >
-                <img src={about} alt="about"
-                    className={s.about}
-                    srcSet={about2x}
-                />
-            </NavLink>
+            </button>
+            <img src={title} alt="poker helper"
+                className={s.title}
+                srcSet={title2x}
+            />
+            {navMenuisOpened && <NavMenu onClose={isCloseNavMenu} />}
         </header>
     )
 }
+
+export default Header;

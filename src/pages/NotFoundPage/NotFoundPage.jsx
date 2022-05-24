@@ -1,5 +1,9 @@
-export const NotFoundPage = () => {
+import Title from "components/Title";
+
+const NotFoundPage = () => {
     return (
-        <p>Not found page</p>
+        <Title title="Page not found"/>
     )
 }
+
+export default NotFoundPage;

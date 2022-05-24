@@ -1,3 +1,5 @@
+@import '../../assets/scss/utils/variables'; 
+
 .buttonWrapper {
     display: flex;
     flex-direction: row-reverse;
@@ -9,28 +11,22 @@
     outline: 0;
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    background-color: rgba(15, 15, 14, 0.72);
-}
+    background-color: $main-bg-color;
 
-/* .buttonWrapper:hover,
-.buttonWrapper:focus {
-    transform: scale(1.15);
-    opacity: 0.75;
-    background-color: blue;
-  } */
+    &:first-child,
+    &:nth-child(2) {
+        margin-top: 0;
+    }
 
-.buttonWrapper:first-child,
-.buttonWrapper:nth-child(2) {
-    margin-top: 0;
-}
-.buttonWrapper:nth-child(2n + 1) {
-    margin-left: 0;
-}
-.buttonWrapper:nth-child(2n) {
-    margin-right: 0;
-}
-.buttonWrapper:last-child {
-    margin-bottom: 0;
+    &:nth-child(2n + 1) {
+        margin-left: 0;
+    }
+    &:nth-child(2n) {
+        margin-right: 0;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .accentWrapper {
@@ -44,9 +40,9 @@
 }
 
 .title {
-    font-family: 'BrunoAce';
+    font-family: $main-font;
     font-size: 14px;
-    color: #ffffff;
+    color: $main-color;
 }
 
 .questionButton {
@@ -66,7 +62,7 @@
 }
 
 .question {
-    font-family: 'BrunoAce';
+    font-family: $main-font;
     font-size: 10px;
     color: #000000;
 }

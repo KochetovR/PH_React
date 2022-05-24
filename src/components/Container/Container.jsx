@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
-import s from './Container.module.css';
+import s from './Container.module.scss';
 
-export function Container({children}) {
+function Container({children}) {
     return <div className={s.container}>
         {children}
     </div>
@@ -10,3 +10,5 @@ export function Container({children}) {
 Container.propTypes = {
     children: PropTypes.node,
 }
+
+export default Container;
