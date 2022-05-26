@@ -1,3 +1,4 @@
+import {CircleArrow as ScrollUpButton} from "react-scroll-up-button";
 import Title from "components/Title";
 import Description from "components/Description";
 
@@ -11,12 +12,18 @@ const HowToUsePage = () => {
     return (
         <>
             <Title title="How to use" />
-            <div className={s.block}>
+            <div className={s.descriptionBlock}>
                 <p className={s.subTitle}>{ subTitle}</p>
                 {data.map(({ title, description }) => (
                     <Description key={title} title={title} description={ description}/>
                 ))}
             </div>
+            <ScrollUpButton
+                EasingType="linear"
+                StopPosition={10}
+                ShowAtPosition={50}
+                style={{zIndex: 20, border: '3px solid #918252', background: 'transparent', fill: 'rgba(219, 175, 61, 0.8) '}}
+            />
         </>
         
     )
