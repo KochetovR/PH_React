@@ -16,7 +16,7 @@
   }
 
   @media (min-width: $tablet) and (max-width: $max-tablet) {
-    width: $tablet;
+    max-width: $max-tablet;
     padding-left: 40px;
     padding-right: 40px;
   }

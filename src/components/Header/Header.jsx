@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import NavMenu from '../NavMenu/'
 
@@ -10,13 +11,16 @@ import title from 'assets/img/title.png';
 import title2x from 'assets/img/title@2x.png';
 
 function Header() {
-    const [navMenuisOpened, setNavMenuisOpened] = useState(false)
+    const [navMenuisOpened, setNavMenuisOpened] = useState(false);
+    const [rotateCloseButton, setRotateCloseButton] = useState(false);
 
     const isOpenNavMenu = () => {
         setNavMenuisOpened(true)
+        setRotateCloseButton(false)
     }
     const isCloseNavMenu = () => {
-        setNavMenuisOpened(false)
+        setNavMenuisOpened(false);
+        setRotateCloseButton(true);
     }
     return (
         <header className={s.headerContainer}>
@@ -33,7 +37,19 @@ function Header() {
                 className={s.title}
                 srcSet={title2x}
             />
-            {navMenuisOpened && <NavMenu onClose={isCloseNavMenu} />}
+            <CSSTransition
+                in={navMenuisOpened}
+                timeout={500}
+                classNames={{
+                    enterActive: 'visible',
+                    enterDone: 'visible',
+                    exitActive: 'hidden',
+                }}
+                mountOnEnter
+                unmountOnExit
+            >
+                <NavMenu onClose={isCloseNavMenu} rotateCloseButton={rotateCloseButton} />
+            </CSSTransition>
         </header>
     )
 }

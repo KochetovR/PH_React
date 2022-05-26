@@ -1,14 +1,16 @@
 import { NavLink } from "react-router-dom";
+// import { useState } from 'react';
 import PropTypes from "prop-types";
 import { CgClose } from 'react-icons/cg';
 
 import s from './NavMenu.module.scss';
 
-const style = {marginBottom: 30, fontSize: 28, fontFamily: 'Bevan'}
+const style = {marginBottom: 30, fontSize: 28, fontFamily: 'Bevan', border: 'none'}
 
-const NavMenu = ({onClose}) => {
+const NavMenu = ({ onClose, rotateCloseButton }) => {
+    
     return (
-        <nav className={s.nav}>
+        <nav className={`${s.nav}`}>
             <NavLink to="/"
                 style={style}
                 onClick={onClose}
@@ -23,7 +25,7 @@ const NavMenu = ({onClose}) => {
             >Contacts</NavLink>
             <button
                 type="button"
-                className={s.closeButton}
+                className={`${s.closeButton} ${rotateCloseButton ? 'rotateCloseButton' : ''}`}
                 onClick={onClose}
             >
                 <CgClose size='50' color='#fff'
@@ -34,7 +36,7 @@ const NavMenu = ({onClose}) => {
 }
 
 NavMenu.propTypes = {
-    onClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired
 };
 
 export default NavMenu;

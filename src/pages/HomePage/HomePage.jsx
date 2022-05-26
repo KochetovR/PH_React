@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MenuItem from 'components/SituationItem';
+import SituationItem from 'components/SituationItem';
 import PopupInfo from 'components/PopupInfo';
 import Title from 'components/Title';
 
@@ -25,7 +25,7 @@ const HomePage = () => {
             
             <div className={s.itemsWrapper}>
                 {data.map( ({title}, index) => (
-                    <MenuItem key={title} title={title} onClick={isClickInfoModal} index={index} />
+                    <SituationItem key={title} title={title} onClick={isClickInfoModal} index={index} />
                     )
                 )}
             </div>
