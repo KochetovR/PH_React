@@ -1,0 +1,31 @@
+@import '../../assets/scss/utils/variables';
+
+.positionButton {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    opacity: 0.7;
+    border-radius: 50%;
+    border: 1px solid $main-bg-color;
+    font-family: 'BrunoAce';
+    background-color: $secondary-bg-color;
+    color: $main-color;
+}
+
+.active {
+    transform: scale(1.05);
+    color: $main-bg-color;
+}
+
+.hero {
+    background-color: rgb(51, 102, 46);
+}
+
+.cc {
+    background-color: rgb(30, 73, 212);
+}
+
+.bet {
+    background-color: rgb(207, 48, 48);
+}

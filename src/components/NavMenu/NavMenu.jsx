@@ -1,16 +1,15 @@
 import { NavLink } from "react-router-dom";
-// import { useState } from 'react';
 import PropTypes from "prop-types";
 import { CgClose } from 'react-icons/cg';
 
 import s from './NavMenu.module.scss';
 
-const style = {marginBottom: 30, fontSize: 28, fontFamily: 'Bevan', border: 'none'}
+const style = {marginBottom: 30, fontSize: 28, fontFamily: 'Bevan', border: 'none', outline: 'none', background: 'none'}
 
-const NavMenu = ({ onClose, rotateCloseButton }) => {
+const NavMenu = ({ onClose, rotateCloseButton, refa }) => {
     
     return (
-        <nav className={`${s.nav}`}>
+        <nav ref={refa} className={`${s.nav}`}>
             <NavLink to="/"
                 style={style}
                 onClick={onClose}
@@ -25,18 +24,18 @@ const NavMenu = ({ onClose, rotateCloseButton }) => {
             >Contacts</NavLink>
             <button
                 type="button"
-                className={`${s.closeButton} ${rotateCloseButton ? 'rotateCloseButton' : ''}`}
+                className={`${s.closeButton} ${rotateCloseButton ? `${s.rotateCloseButton}` : ''}`}
                 onClick={onClose}
             >
-                <CgClose size='50' color='#fff'
-                />
+                <CgClose size='50' color='#fff'/>
             </button>
         </nav>
     )
 }
 
 NavMenu.propTypes = {
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    // refa
 };
 
 export default NavMenu;

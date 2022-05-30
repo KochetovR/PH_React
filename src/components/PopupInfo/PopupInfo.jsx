@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
 import PropTypes from "prop-types";
+import MainButton from 'components/MainButton';
 
 import s from './PopupInfo.module.scss';
 
@@ -15,11 +16,7 @@ const PopupInfo = ({ onClose, description }) => {
         <div className={s.popupBackdrop} onClick={handleBackdropClick}>
             <div className={s.popupContent}>
                 <p className={s.description}>{description}</p>
-                <button
-                    type='button'
-                    onClick={onClose}
-                    className={s.closeButton}
-                >Good</button>
+                <MainButton onClick={onClose} text='Good' />
             </div>
         </div>,
         modalRoot,
