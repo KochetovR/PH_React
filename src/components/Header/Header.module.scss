@@ -42,3 +42,21 @@
     width: 191px;
     height: 27px;
   }
+
+  // animate navMenu
+.visible {
+  animation: visibleMenu .5s forwards;
+}
+
+.hidden {
+  animation: visibleMenu .5s reverse;
+}
+
+@keyframes visibleMenu {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}

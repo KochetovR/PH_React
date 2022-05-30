@@ -14,3 +14,21 @@
     flex-wrap: wrap;
     width: 100%;
 }
+
+// animate Table
+.visible {
+  animation: visibleTable .5s forwards;
+}
+
+.hidden {
+  animation: visibleTable .5s reverse;
+}
+
+@keyframes visibleTable {
+  0%{
+    transform: translateY(-100%);
+  }
+  100%{
+    transform: translateY(0%);
+  }
+}

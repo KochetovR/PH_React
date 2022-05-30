@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import NavMenu from '../NavMenu/'
@@ -13,6 +13,7 @@ import title2x from 'assets/img/title@2x.png';
 function Header() {
     const [navMenuisOpened, setNavMenuisOpened] = useState(false);
     const [rotateCloseButton, setRotateCloseButton] = useState(false);
+    const nodeRef = useRef(null)
 
     const isOpenNavMenu = () => {
         setNavMenuisOpened(true)
@@ -38,17 +39,18 @@ function Header() {
                 srcSet={title2x}
             />
             <CSSTransition
+                nodeRef={nodeRef}
                 in={navMenuisOpened}
                 timeout={500}
                 classNames={{
-                    enterActive: 'visible',
-                    enterDone: 'visible',
-                    exitActive: 'hidden',
+                    enterActive: `${s.visible}`,
+                    enterDone: `${s.visible}`,
+                    exitActive: `${s.hidden}`,
                 }}
                 mountOnEnter
                 unmountOnExit
             >
-                <NavMenu onClose={isCloseNavMenu} rotateCloseButton={rotateCloseButton} />
+                <NavMenu refa={nodeRef} onClose={isCloseNavMenu} rotateCloseButton={rotateCloseButton} />
             </CSSTransition>
         </header>
     )
