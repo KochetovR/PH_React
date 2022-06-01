@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import { CgClose } from 'react-icons/cg';
+import { NavLink } from "react-router-dom";
+import CloseButton from "components/CloseButton";
 
+import navMenuItem from '../../data/navMenuItem.json';
 import s from './NavMenu.module.scss';
 
 const style = {marginBottom: 30, fontSize: 28, fontFamily: 'Bevan', border: 'none', outline: 'none', background: 'none'}
@@ -10,32 +11,22 @@ const NavMenu = ({ onClose, rotateCloseButton, refa }) => {
     
     return (
         <nav ref={refa} className={`${s.nav}`}>
-            <NavLink to="/"
-                style={style}
-                onClick={onClose}
-            >Home</NavLink>
-            <NavLink to="/HowToUse"
-                style={style}
-                onClick={onClose}
-            >How to use</NavLink>
-            <NavLink to="/contacts"
-                style={{...style, marginBottom: 0}}
-                onClick={onClose}
-            >Contacts</NavLink>
-            <button
-                type="button"
-                className={`${s.closeButton} ${rotateCloseButton ? `${s.rotateCloseButton}` : ''}`}
-                onClick={onClose}
-            >
-                <CgClose size='50' color='#fff'/>
-            </button>
+            {navMenuItem.map(({text, to}, index) => (
+                <NavLink
+                    key={text}
+                    to={to}
+                    onClick={onClose}
+                    style={index === 2 ? {...style, marginBottom: 0} : style}
+                >{text }</NavLink>
+            ))}
+            <CloseButton callback={onClose} rotateButton={rotateCloseButton}/>
         </nav>
     )
 }
 
 NavMenu.propTypes = {
     onClose: PropTypes.func.isRequired,
-    // refa
+    refa: PropTypes.any,
 };
 
 export default NavMenu;

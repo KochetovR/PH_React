@@ -1,0 +1,47 @@
+[
+    {
+        "position": "BU",
+        "top": 360,
+        "left": 110
+    },
+    {
+        "position": "SB",
+        "top": 290,
+        "left": 23
+    },
+    {
+        "position": "BB",
+        "top": 210,
+        "left": 20
+    },
+    {
+        "position": "EP",
+        "top": 130,
+        "left": 20
+    },
+    {
+        "position": "EP1",
+        "top": 50,
+        "left": 43
+    },
+    {
+        "position": "MP1",
+        "top": 50,
+        "left": 177
+    },
+    {
+        "position": "MP2",
+        "top": 130,
+        "left": 200
+    },
+    {
+        "position": "MP3",
+        "top": 210,
+        "left": 200
+    },
+    {
+        "position": "CO",
+        "top": 290,
+        "left": 198
+    }
+]

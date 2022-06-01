@@ -6,7 +6,7 @@ import PopupInfo from 'components/PopupInfo';
 import Title from 'components/Title';
 import Table from 'components/Table';
 
-import data from 'data/data.json'
+import situationsItemData from 'data/situationsItemData.json'
 
 import s from './HomePage.module.scss'
 
@@ -20,13 +20,14 @@ const HomePage = () => {
 
     const isClickInfoModal = index => {
         setIsInfoModalOpen(true)
-        setdescriptionInfo(data[index].description)
+        setdescriptionInfo(situationsItemData[index].description)
     }
     const isCloseInfoModal = () => {
         setIsInfoModalOpen(false)
         setdescriptionInfo(null)
     }
-    const isClickOnTable = index => {
+    const isClickOnTable = type => {
+        console.log(type);
         setOpenTable(true);
         setRotateCloseButton(false)
     }
@@ -40,10 +41,11 @@ const HomePage = () => {
             
             <div
                 className={s.itemsWrapper}>
-                {data.map( ({title}, index) => (
+                {situationsItemData.map( ({title, type}, index) => (
                     <SituationItem
                         key={title}
                         title={title}
+                        type={type}
                         isClickOnTable={isClickOnTable}
                         isClickInfoModal={isClickInfoModal}
                         index={index}
