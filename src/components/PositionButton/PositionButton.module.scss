@@ -11,21 +11,23 @@
     font-family: 'BrunoAce';
     background-color: $secondary-bg-color;
     color: $main-color;
+
+    transition: $animation-transition;
 }
 
-.active {
-    transform: scale(1.05);
-    color: $main-bg-color;
-}
+// button.activeButton {
+//     transform: scale(1.1);
+//     box-shadow: 0px 0px 28px 10px rgb(15 14 14);
+// }
 
-.hero {
-    background-color: rgb(51, 102, 46);
-}
+// .hero {
+//     background-color: rgb(51, 102, 46);
+// }
 
-.cc {
-    background-color: rgb(30, 73, 212);
-}
+// .caller {
+//     background-color: rgb(30, 73, 212);
+// }
 
-.bet {
-    background-color: rgb(207, 48, 48);
-}
+// .better {
+//     background-color: rgb(207, 48, 48);
+// }

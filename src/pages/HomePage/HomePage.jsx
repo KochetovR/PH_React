@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import SituationItem from 'components/SituationItem';
-import PopupInfo from 'components/PopupInfo';
+import InfoPopup from 'components/InfoPopup';
 import Title from 'components/Title';
 import Table from 'components/Table';
 
@@ -12,24 +12,25 @@ import s from './HomePage.module.scss'
 
 const HomePage = () => {
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-    const [descriptionInfo, setdescriptionInfo] = useState('');
+    const [descriptionInfo, setDescriptionInfo] = useState('');
     const [openTable, setOpenTable] = useState(false);
+    const [situationIndex, setSituationIndex] = useState(0)
     const [rotateCloseButton, setRotateCloseButton] = useState(false);
 
     const nodeRef = useRef(null)
 
     const isClickInfoModal = index => {
         setIsInfoModalOpen(true)
-        setdescriptionInfo(situationsItemData[index].description)
+        setDescriptionInfo(situationsItemData[index].description)
     }
     const isCloseInfoModal = () => {
         setIsInfoModalOpen(false)
-        setdescriptionInfo(null)
+        setDescriptionInfo(null)
     }
-    const isClickOnTable = type => {
-        console.log(type);
+    const isClickOnTable = index => {
         setOpenTable(true);
-        setRotateCloseButton(false)
+        setRotateCloseButton(false);
+        setSituationIndex(index)
     }
     const isCloseTable = () => {
         setOpenTable(false);
@@ -66,11 +67,11 @@ const HomePage = () => {
                 mountOnEnter
                 unmountOnExit
             >
-                <Table refa={nodeRef} onClose={isCloseTable} rotateCloseButton={rotateCloseButton} />
+                <Table refa={nodeRef} onClose={isCloseTable} rotateCloseButton={rotateCloseButton} situationIndex={situationIndex}/>
             </CSSTransition>
 
             {isInfoModalOpen && (
-                <PopupInfo onClose={isCloseInfoModal} description={descriptionInfo }/>
+                <InfoPopup onClose={isCloseInfoModal} description={descriptionInfo }/>
             )}
         </div>
     )

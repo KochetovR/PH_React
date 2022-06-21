@@ -13,11 +13,11 @@ $table-bg-color: #C2A563;
 // border color
 $border-color: #918252;
 
-
-
 $mobile: 320px;
 $mobile-middle: 480px;
 $max-mobile: 767px;
 $tablet: 768px;
 $max-tablet: 1279px;
 $desktop: 1280px;
+
+$animation-transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);

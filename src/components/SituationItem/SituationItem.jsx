@@ -8,7 +8,7 @@ function SituationItem({ title, type, isClickOnTable, isClickInfoModal, index })
             <button
                 type='button'
                 className={s.accentWrapper}
-                onClick={() => isClickOnTable(type)}
+                onClick={() => isClickOnTable(index)}
             >
                 <span className={s.title}>{title}</span>
             </button>
