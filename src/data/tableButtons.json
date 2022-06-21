@@ -1,47 +1,57 @@
 [
     {
-        "position": "BU",
+        "position": "bu",
         "top": 360,
-        "left": 110
+        "left": 110,
+        "disabled": ["bb", "bvb"]
     },
     {
-        "position": "SB",
+        "position": "sb",
         "top": 290,
-        "left": 23
+        "left": 23,
+        "disabled": ["bb", "rfi", "vs3bet"]
     },
     {
-        "position": "BB",
+        "position": "bb",
         "top": 210,
-        "left": 20
+        "left": 20,
+        "disabled": ["rfi", "push", "vs3bet"],
+        "autoActive": "bb"
     },
     {
-        "position": "EP",
+        "position": "ep",
         "top": 130,
-        "left": 20
+        "left": 20,
+        "disabled": ["bb", "bvb", "sqz", "vs3bet"]
     },
     {
-        "position": "EP1",
+        "position": "ep1",
         "top": 50,
-        "left": 43
+        "left": 43,
+        "disabled": ["bb", "bvb", "push", "rfi", "sqz", "vs3bet"]
     },
     {
-        "position": "MP1",
+        "position": "mp",
         "top": 50,
-        "left": 177
+        "left": 177,
+        "disabled": ["bb", "bvb", "push", "rfi", "sqz"]
     },
     {
-        "position": "MP2",
+        "position": "mp2",
         "top": 130,
-        "left": 200
+        "left": 200,
+        "disabled": ["bb", "bvb", "push", "sqz", "vs3bet", "vsOpen"]
     },
     {
-        "position": "MP3",
+        "position": "mp3",
         "top": 210,
-        "left": 200
+        "left": 200,
+        "disabled": ["bb", "bvb"]
     },
     {
-        "position": "CO",
+        "position": "co",
         "top": 290,
-        "left": 198
+        "left": 198,
+        "disabled": ["bb", "bvb"]
     }
 ]

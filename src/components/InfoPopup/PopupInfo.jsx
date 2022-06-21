@@ -2,11 +2,11 @@ import { createPortal } from 'react-dom';
 import PropTypes from "prop-types";
 import MainButton from 'components/MainButton';
 
-import s from './PopupInfo.module.scss';
+import s from './InfoPopup.module.scss';
 
 const modalRoot = document.querySelector('#root-modal');
 
-const PopupInfo = ({ onClose, description }) => {
+const InfoPopup = ({ onClose, description }) => {
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
           onClose();
@@ -23,9 +23,9 @@ const PopupInfo = ({ onClose, description }) => {
     )
 }
 
-PopupInfo.propTypes = {
+InfoPopup.propTypes = {
     onClose: PropTypes.func.isRequired,
     description: PropTypes.string.isRequired,
 };
 
-export default PopupInfo;
+export default InfoPopup;

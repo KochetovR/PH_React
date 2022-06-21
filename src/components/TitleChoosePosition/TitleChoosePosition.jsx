@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import s from './TitleChoosePosition.module.scss';
 
-export default function TitleChoosePosition({ whoChoose }) {
+export default function TitleChoosePosition({ whoChoose, typeSituation }) {
     return (
         <>
             {whoChoose === 'hero' && (<p className={s.title}>Choose youre position</p>)}
@@ -16,4 +16,5 @@ export default function TitleChoosePosition({ whoChoose }) {
 
 TitleChoosePosition.propTypes = {
     whoChoose: PropTypes.string,
+    typeSituation: PropTypes.string.isRequired
 };
