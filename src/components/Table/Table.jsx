@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import TitleChoosePosition from "components/TitleChoosePosition";
 import PositionButton from "components/PositionButton";
+import RoleSelectButton from "components/RoleSelectButton";
 import StackSizeInput from "components/StackSizeInput";
 import MainButton from "components/MainButton";
 import CloseButton from "components/CloseButton";
@@ -20,37 +21,34 @@ const initialHeroPosition = index => {
 
 const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     const [srcImg, setSrcImg] = useState(null);
-    const [whoChoose, setWhoChoose] = useState('hero');
-    // const [whoCliked, setWhoCliked] = useState(null);
+    const [activeRole, setActiveRole] = useState('hero');
     const [selectIndex, setSelectIndex] = useState(0);
-    const [heroPosition, setHeroPosition] = useState(() => initialHeroPosition(situationIndex))
+    const [heroPosition, setHeroPosition] = useState(() => initialHeroPosition(situationIndex));
     const [betterPosition, setBetterPosition] = useState(null);
     const [callerPosition, setCallerPosition] = useState(null);
     const [stackSize, setStackSize] = useState(() => initialStackSize(situationIndex));
     const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-    const [rotateCloseResultPopupButton, setRotateCloseResultPopupButton] = useState(false);
     const typeSituation = situationsItemData[situationIndex].type;
 
-     useEffect(() => {
+    useEffect(() => {
         if (!heroPosition || heroPosition === 'bb') {
             return setSrcImg(`${typeSituation}/${stackSize}/${betterPosition}`);
         }
         setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}`);
-    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition])
+    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition]);
 
     const playersLength = situationsItemData[situationIndex].players.length - 1;
 
     // const players = situationsItemData[situationIndex].type
 
     const clickSelectPosition = position => {
-        
         if (!position) {
             setHeroPosition(position)
             setSelectIndex(0)
             return
         }
         setHeroPosition(position)
-        setSelectIndex(prevselectIndex => prevselectIndex === playersLength ? prevselectIndex : prevselectIndex + 1 )
+        setSelectIndex(prevselectIndex => prevselectIndex === playersLength ? prevselectIndex : prevselectIndex + 1)
         // setWhoCliked(situationsItemData[situationIndex].players[selectIndex])
         // whoChoose(situationsItemData[situationIndex].players[selectIndex])
         // setSelectIndex(prevselectIndex => prevselectIndex + 1)
@@ -71,29 +69,33 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
         //         break;
         //     default: return;
         // }
-    }
+    };
 
     const isClickCalculate = () => {
         setIsResultModalOpen(true)
-    }
+    };
 
     const changeStackSize = e => {
         setStackSize(e)
-    }
+    };
     
     const isCloseResultModal = () => {
-        setRotateCloseResultPopupButton(true)
         setIsResultModalOpen(false)
         setSrcImg(null)
-    }
+    };
+
+    const handleChangeRole = role => {
+        setActiveRole(role)
+    };
     
     const stack = situationsItemData[situationIndex].stack;
+    const players = situationsItemData[situationIndex].players;
 
     return (
         <div ref={refa} className={s.tableWrapper}>
             <CloseButton callback={onClose} rotateButton={rotateCloseButton} />
 
-            <TitleChoosePosition whoChoose={whoChoose} typeSituation={typeSituation} />
+            <TitleChoosePosition activeRole={activeRole} />
 
             <div className={s.table}>
                 <div className={s.borderTable}></div>
@@ -111,7 +113,13 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
                         situationIndex={situationIndex}
                         heroPosition={heroPosition}
                     />
-                )) }            
+                ))}
+                
+                <div className={s.roleButtonsWrapper}>
+                    {players.map(player => (
+                        <RoleSelectButton key={player} role={player} onClick={handleChangeRole} activeRole={activeRole} />
+                    ))}
+                </div>
             </div>
 
             <StackSizeInput stack={stack} changeStack={changeStackSize} />
@@ -119,11 +127,11 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
             <MainButton text="Calculate" width={200} height={50} fontSize={16} onClick={isClickCalculate} />
             
             {isResultModalOpen && (
-                <ResultPopup onClose={isCloseResultModal} srcImg={srcImg} rotateCloseResultPopupButton={rotateCloseResultPopupButton} />
+                <ResultPopup onClose={isCloseResultModal} srcImg={srcImg} />
             )}
         </div>
     )
-}
+};
 
 Table.propTypes = {
     onClose: PropTypes.func.isRequired,
