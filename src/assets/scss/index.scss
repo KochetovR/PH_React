@@ -76,13 +76,35 @@ button.activeButton {
 }
 
 button.hero {
-    background-color: rgb(51, 102, 46);
+    background-color: $hero-color;
 }
 
 button.caller {
-    background-color: rgb(30, 73, 212);
+    background-color: $caller-color;
 }
 
 button.better {
-    background-color: rgb(207, 48, 48);
+    background-color: $better-color;
+}
+
+.role-hero {
+    border: 3px solid $hero-color;
+    color: $hero-color;
+}
+
+.role-caller {
+    border: 3px solid $caller-color;
+    color: $caller-color;
+}
+
+.role-better {
+    border: 3px solid $better-color;
+    color: $better-color;
+}
+
+button.active-role {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px 5px rgb(15 14 14);
+  transition: $animation-transition;
 }

@@ -10,7 +10,7 @@ const initialActiveState = (active, type) => active === type ? true : false;
 
 export default function PositionButton({position, top, left, type, autoActive, disabled, clickSelectPosition, situationIndex, selectIndex, heroPosition}) {
   const [whoClickInMe, setWhoClickInMe] = useState(() => initialWhoClickInMeState(autoActive,type));
-  const [active, setActive] = useState(() => initialWhoClickInMeState(autoActive,type));
+  const [active, setActive] = useState(() => initialActiveState(autoActive,type));
 
   useEffect(() => {
     if (whoClickInMe && heroPosition && position !== heroPosition) {

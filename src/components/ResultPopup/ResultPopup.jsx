@@ -9,7 +9,7 @@ import IMAGES from '../../data/imageResult'
 
 const modalRoot = document.querySelector('#root-modal');
 
-export default function ResultPopup({ onClose, srcImg, rotateCloseResultPopupButton }) {
+export default function ResultPopup({ onClose, srcImg }) {
     
     const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
@@ -19,7 +19,7 @@ export default function ResultPopup({ onClose, srcImg, rotateCloseResultPopupBut
 
     return createPortal(
         <div className={s.popupBackdrop} onClick={handleBackdropClick}>
-            <CloseButton callback={onClose} rotateButton={rotateCloseResultPopupButton}/>
+            <CloseButton callback={onClose} />
             <img src={IMAGES[srcImg]} alt="result" className={s.lightbox__image} />
         </div>,
         modalRoot,
@@ -29,5 +29,4 @@ export default function ResultPopup({ onClose, srcImg, rotateCloseResultPopupBut
 ResultPopup.propTypes = {
     onClose: PropTypes.func.isRequired,
     srcImg: PropTypes.string.isRequired,
-    rotateCloseResultPopupButton: PropTypes.bool.isRequired
 };

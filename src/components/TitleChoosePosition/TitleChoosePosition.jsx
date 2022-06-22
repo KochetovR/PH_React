@@ -2,19 +2,18 @@ import PropTypes from "prop-types";
 
 import s from './TitleChoosePosition.module.scss';
 
-export default function TitleChoosePosition({ whoChoose, typeSituation }) {
+export default function TitleChoosePosition({ activeRole }) {
     return (
         <>
-            {whoChoose === 'hero' && (<p className={s.title}>Choose youre position</p>)}
+            {activeRole === 'hero' && (<p className={s.title}>Choose youre position</p>)}
 
-            {whoChoose === 'better' && (<p className={s.title}>Choose better position</p>)}
+            {activeRole === 'better' && (<p className={s.title}>Choose better position</p>)}
 
-            {whoChoose === 'caller' && (<p className={s.title}>Choose caller position</p>)}
+            {activeRole === 'caller' && (<p className={s.title}>Choose caller position</p>)}
         </>
     )
 }
 
 TitleChoosePosition.propTypes = {
-    whoChoose: PropTypes.string,
-    typeSituation: PropTypes.string.isRequired
+    activeRole: PropTypes.string,
 };
