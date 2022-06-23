@@ -22,70 +22,72 @@ const initialHeroPosition = index => {
 const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     const [srcImg, setSrcImg] = useState(null);
     const [activeRole, setActiveRole] = useState('hero');
-    const [selectIndex, setSelectIndex] = useState(0);
     const [heroPosition, setHeroPosition] = useState(() => initialHeroPosition(situationIndex));
     const [betterPosition, setBetterPosition] = useState(null);
     const [callerPosition, setCallerPosition] = useState(null);
     const [stackSize, setStackSize] = useState(() => initialStackSize(situationIndex));
+    const [disabledCalculateButton, setDisabledCalculateButton] = useState(true)
     const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+
     const typeSituation = situationsItemData[situationIndex].type;
 
     useEffect(() => {
-        if (!heroPosition || heroPosition === 'bb') {
-            return setSrcImg(`${typeSituation}/${stackSize}/${betterPosition}`);
-        }
-        setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}`);
-    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition]);
-
-    const playersLength = situationsItemData[situationIndex].players.length - 1;
-
-    // const players = situationsItemData[situationIndex].type
-
-    const clickSelectPosition = position => {
-        if (!position) {
-            setHeroPosition(position)
-            setSelectIndex(0)
+        if (!srcImg) {
             return
         }
-        setHeroPosition(position)
-        setSelectIndex(prevselectIndex => prevselectIndex === playersLength ? prevselectIndex : prevselectIndex + 1)
-        // setWhoCliked(situationsItemData[situationIndex].players[selectIndex])
-        // whoChoose(situationsItemData[situationIndex].players[selectIndex])
-        // setSelectIndex(prevselectIndex => prevselectIndex + 1)
-        
-        // switch (typeSituation) {
-        //     case 'bb':
-        //         setWhoChoose('better')
-        //         break;
-        //     case 'sqz':
-        //         whoChoose === 'hero' ?
-        //             setWhoChoose('better') : setWhoChoose('caller')
-        //         break;
-        //     case 'vs3bet':
-        //         setWhoChoose('better');
-        //         break;
-        //     case 'vsOpen':
-        //         setWhoChoose('better');
-        //         break;
-        //     default: return;
-        // }
+        const validSrcImg = srcImg.includes('null')
+        validSrcImg ? setDisabledCalculateButton(true) : setDisabledCalculateButton(false)
+    }, [srcImg])
+
+    useEffect(() => {
+        switch (typeSituation) {
+            case 'bb':
+                setSrcImg(`${typeSituation}_${stackSize}_${betterPosition}`);
+                break;
+            case 'vs3bet':
+                setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}_${betterPosition}`);
+                break;
+            case 'vsOpen':
+                setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}_${betterPosition}`);
+                break;
+            case 'sqz':
+                setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}_${betterPosition}_${callerPosition}`);
+                break;
+            
+            default: return setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}`);
+        }
+    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition, callerPosition]);
+
+    const clickSelectPosition = position => {
+        switch (activeRole) { 
+            case 'hero':
+                setHeroPosition(position)
+                break;
+            case 'better':
+                setBetterPosition(position)
+                break;
+            case 'caller':
+                setCallerPosition(position)
+                break;
+            default: return;
+        }
     };
 
-    const isClickCalculate = () => {
-        setIsResultModalOpen(true)
+    const handleChangeRole = role => {
+        setActiveRole(role)
     };
 
     const changeStackSize = e => {
         setStackSize(e)
     };
+
+    const isClickCalculate = () => {
+        setIsResultModalOpen(true)
+    };
     
     const isCloseResultModal = () => {
         setIsResultModalOpen(false)
         setSrcImg(null)
-    };
-
-    const handleChangeRole = role => {
-        setActiveRole(role)
     };
     
     const stack = situationsItemData[situationIndex].stack;
@@ -109,9 +111,10 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
                         autoActive={autoActive}
                         type={typeSituation}
                         clickSelectPosition={clickSelectPosition}
-                        selectIndex={selectIndex}
-                        situationIndex={situationIndex}
+                        activeRole={activeRole}
                         heroPosition={heroPosition}
+                        betterPosition={betterPosition}
+                        callerPosition={callerPosition}
                     />
                 ))}
                 
@@ -124,7 +127,7 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
 
             <StackSizeInput stack={stack} changeStack={changeStackSize} />
 
-            <MainButton text="Calculate" width={200} height={50} fontSize={16} onClick={isClickCalculate} />
+            <MainButton text="Calculate" width={200} height={50} fontSize={16} onClick={isClickCalculate} disabled={disabledCalculateButton} />
             
             {isResultModalOpen && (
                 <ResultPopup onClose={isCloseResultModal} srcImg={srcImg} />

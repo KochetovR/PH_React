@@ -16,5 +16,5 @@ export default function CloseButton({callback, rotateButton}) {
 
 CloseButton.propTypes = {
     callback: PropTypes.func.isRequired,
-    rotateButton: PropTypes.bool.isRequired,
+    rotateButton: PropTypes.bool
 };

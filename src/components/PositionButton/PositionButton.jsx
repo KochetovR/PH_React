@@ -3,25 +3,41 @@ import PropTypes from "prop-types";
 
 import s from './PositionButton.module.scss';
 
-import situationsItemData from 'data/situationsItemData.json';
-
 const initialWhoClickInMeState = (active, type) => active === type ? 'hero' : null;
 const initialActiveState = (active, type) => active === type ? true : false;
 
-export default function PositionButton({position, top, left, type, autoActive, disabled, clickSelectPosition, situationIndex, selectIndex, heroPosition}) {
+export default function PositionButton({position, top, left, type, autoActive, activeRole, disabled, clickSelectPosition, heroPosition, betterPosition, callerPosition}) {
   const [whoClickInMe, setWhoClickInMe] = useState(() => initialWhoClickInMeState(autoActive,type));
-  const [active, setActive] = useState(() => initialActiveState(autoActive,type));
-
+  const [active, setActive] = useState(() => initialActiveState(autoActive, type));
+  
   useEffect(() => {
-    if (whoClickInMe && heroPosition && position !== heroPosition) {
-      setWhoClickInMe(null)
-      setActive(!active)
-      console.log(position);
-      console.log(heroPosition);
+    switch (activeRole) {
+      case 'hero':
+        if (whoClickInMe && heroPosition && position !== heroPosition && whoClickInMe === activeRole) {
+          setWhoClickInMe(null)
+          setActive(false)
+        }
+        break
+      case 'better':
+        if (whoClickInMe && betterPosition && position !== betterPosition && whoClickInMe === activeRole) {
+          setWhoClickInMe(null)
+          setActive(false)
+        }
+        break
+      case 'caller':
+        if (whoClickInMe && callerPosition && position !== callerPosition && whoClickInMe === activeRole) {
+          setWhoClickInMe(null)
+          setActive(false)
+        }
+        break
+      default: return;
     }
-  }, [heroPosition, active, position, whoClickInMe])
+  }, [whoClickInMe, heroPosition, position, activeRole, betterPosition, callerPosition])
 
   const isHandleClickInME = () => {
+    if (whoClickInMe && whoClickInMe !== activeRole) {
+      return
+    }
     setActive(!active)
 
     if (whoClickInMe) {
@@ -30,27 +46,33 @@ export default function PositionButton({position, top, left, type, autoActive, d
       return
     }
     clickSelectPosition(position)
-    setWhoClickInMe(situationsItemData[situationIndex].players[selectIndex])
+    setWhoClickInMe(activeRole)
   }
 
+  const disabledButton = disabled.includes(type)
   
   return (
     <button
       type="button"
       onClick={isHandleClickInME}
-      className={`${s.positionButton} ${whoClickInMe ? `${whoClickInMe}` : ''} ${active ? 'activeButton' : ''}`}
+      disabled={disabledButton}
+      className={`${s.positionButton} ${whoClickInMe ? `${s[whoClickInMe]}` : ''} ${active ? s.active : ''} ${ disabledButton ? `${s.disabled}` : ''} `}
       style={{top: top, left: left}}
     >{position.toUpperCase()}</button>
   )
 }
 
 PositionButton.propTypes = {
-  clickSelectPosition: PropTypes.func.isRequired,
   position: PropTypes.string.isRequired,
   top: PropTypes.number.isRequired,
   left: PropTypes.number.isRequired,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   autoActive: PropTypes.string,
-  disabled: PropTypes.array.isRequired
+  activeRole: PropTypes.string.isRequired,
+  disabled: PropTypes.array.isRequired,
+  clickSelectPosition: PropTypes.func.isRequired,
+  heroPosition: PropTypes.string,
+  betterPosition: PropTypes.string,
+  callerPosition: PropTypes.string
 };
 

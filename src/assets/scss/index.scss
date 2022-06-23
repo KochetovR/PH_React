@@ -42,17 +42,6 @@ img {
   height: auto;
 }
 
-.visually-hidden {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
-}
-
 .container {
   max-width: $mobile-middle;
   min-width: $mobile;
@@ -63,48 +52,4 @@ img {
 nav a {
   color: $main-color;
   text-decoration: none;
-}
-
-.active {
-  color: $active-color;
-}
-
-button.activeButton {
-  transform: scale(1.1);
-  box-shadow: 0px 0px 28px 10px rgb(15 14 14);
-  transition: $animation-transition;
-}
-
-button.hero {
-    background-color: $hero-color;
-}
-
-button.caller {
-    background-color: $caller-color;
-}
-
-button.better {
-    background-color: $better-color;
-}
-
-.role-hero {
-    border: 3px solid $hero-color;
-    color: $hero-color;
-}
-
-.role-caller {
-    border: 3px solid $caller-color;
-    color: $caller-color;
-}
-
-.role-better {
-    border: 3px solid $better-color;
-    color: $better-color;
-}
-
-button.active-role {
-  opacity: 1;
-  transform: scale(1.05);
-  box-shadow: 0px 0px 15px 5px rgb(15 14 14);
-  transition: $animation-transition;
 }
