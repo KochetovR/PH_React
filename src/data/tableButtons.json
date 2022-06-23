@@ -15,7 +15,7 @@
         "position": "bb",
         "top": 210,
         "left": 20,
-        "disabled": ["rfi", "push", "vs3bet"],
+        "disabled": ["rfi", "push", "vs3bet", "vsOpen"],
         "autoActive": "bb"
     },
     {
@@ -28,19 +28,19 @@
         "position": "ep1",
         "top": 50,
         "left": 43,
-        "disabled": ["bb", "bvb", "push", "rfi", "sqz", "vs3bet"]
+        "disabled": ["bb", "bvb", "push", "rfi", "sqz", "vs3bet", "vsOpen"]
     },
     {
         "position": "mp",
         "top": 50,
         "left": 177,
-        "disabled": ["bb", "bvb", "push", "rfi", "sqz"]
+        "disabled": ["bb", "bvb", "sqz"]
     },
     {
         "position": "mp2",
         "top": 130,
         "left": 200,
-        "disabled": ["bb", "bvb", "push", "sqz", "vs3bet", "vsOpen"]
+        "disabled": ["bb", "bvb", "sqz", "vs3bet", "vsOpen"]
     },
     {
         "position": "mp3",

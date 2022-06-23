@@ -16,7 +16,8 @@ const NavMenu = ({ onClose, rotateCloseButton, refa }) => {
                     key={text}
                     to={to}
                     onClick={onClose}
-                    style={index === 2 ? {...style, marginBottom: 0} : style}
+                    style={index === 2 ? { ...style, marginBottom: 0 } : style}
+                    className={({isActive}) => isActive ? s.active : ''}
                 >{text }</NavLink>
             ))}
             <CloseButton callback={onClose} rotateButton={rotateCloseButton}/>
@@ -27,6 +28,7 @@ const NavMenu = ({ onClose, rotateCloseButton, refa }) => {
 NavMenu.propTypes = {
     onClose: PropTypes.func.isRequired,
     refa: PropTypes.any,
+    rotateCloseButton: PropTypes.bool
 };
 
 export default NavMenu;

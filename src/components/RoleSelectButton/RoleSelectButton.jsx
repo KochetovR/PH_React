@@ -24,7 +24,8 @@ export default function RoleSelectButton({ onClick, role, activeRole }) {
         <button
             type="button"
             onClick={handleClick}
-            className={`${s.button} role-${role} ${active ? 'active-role' : ''}`}>
+            className={`${s.button} ${s[role]} ${active ? s.active : ''}`}
+        >
             {role}
         </button>
     )
@@ -32,5 +33,6 @@ export default function RoleSelectButton({ onClick, role, activeRole }) {
 
 RoleSelectButton.propTypes = {
     onClick: PropTypes.func.isRequired,
-    role: PropTypes.string.isRequired
+    role: PropTypes.string.isRequired,
+    activeRole: PropTypes.string.isRequired
 }

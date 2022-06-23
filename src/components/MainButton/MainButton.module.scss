@@ -9,8 +9,15 @@
     border-radius: 8px;
     border: 1px solid #fff;
     outline: 0;
+    opacity: 1;
     font-family: $main-font;
     font-size: 11px;
     background-color: $main-bg-color;
     color: $main-color;
+    transition: $animation-transition;
+  }
+
+  .disabled {
+    opacity: 0.5;
+    transition: $animation-transition;
   }
