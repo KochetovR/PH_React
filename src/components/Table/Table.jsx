@@ -15,13 +15,13 @@ import situationsItemData from 'data/situationsItemData.json';
 import s from './Table.module.scss';
 
 const initialStackSize = index => situationsItemData[index].stack[0];
-const initialHeroPosition = index => {
-    return index === 3 ? 'bb' : null
-};
+const initialHeroPosition = index => index === 3 ? 'bb' : null;
+const initialActiveRole = index => index === 3 ? 'better' : "hero"
+
 
 const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     const [srcImg, setSrcImg] = useState(null);
-    const [activeRole, setActiveRole] = useState('hero');
+    const [activeRole, setActiveRole] = useState(() => initialActiveRole(situationIndex));
     const [heroPosition, setHeroPosition] = useState(() => initialHeroPosition(situationIndex));
     const [betterPosition, setBetterPosition] = useState(null);
     const [callerPosition, setCallerPosition] = useState(null);
@@ -123,6 +123,7 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
                         <RoleSelectButton key={player} role={player} onClick={handleChangeRole} activeRole={activeRole} />
                     ))}
                 </div>
+                
             </div>
 
             <StackSizeInput stack={stack} changeStack={changeStackSize} />

@@ -290,7 +290,7 @@ const IMAGES = {
     vsOpen_15_mp3_ep: require('./vsOpen/15/mp3/ep.jpg'),
     vsOpen_15_mp_mp: require('./vsOpen/15/mp/mp.jpg'),
     vsOpen_15_mp_ep: require('./vsOpen/15/mp/ep.jpg'),
-    vsOpen_15_ep_ep: require('./vsOpen/15/ep/ep.jpg'),
+    vsOpen_15_ep1_ep: require('./vsOpen/15/ep1/ep.jpg'),
     // 20bb
     vsOpen_20_sb_bu: require('./vsOpen/20/sb/bu.jpg'),
     vsOpen_20_sb_co: require('./vsOpen/20/sb/co.jpg'),
@@ -308,7 +308,7 @@ const IMAGES = {
     vsOpen_20_mp3_ep: require('./vsOpen/20/mp3/ep.jpg'),
     vsOpen_20_mp_mp: require('./vsOpen/20/mp/mp.jpg'),
     vsOpen_20_mp_ep: require('./vsOpen/20/mp/ep.jpg'),
-    vsOpen_20_ep_ep: require('./vsOpen/20/ep/ep.jpg'),
+    vsOpen_20_ep1_ep: require('./vsOpen/20/ep1/ep.jpg'),
     // 25bb
     vsOpen_25_sb_bu: require('./vsOpen/25/sb/bu.jpg'),
     vsOpen_25_sb_co: require('./vsOpen/25/sb/co.jpg'),
@@ -326,7 +326,7 @@ const IMAGES = {
     vsOpen_25_mp3_ep: require('./vsOpen/25/mp3/ep.jpg'),
     vsOpen_25_mp_mp: require('./vsOpen/25/mp/mp.jpg'),
     vsOpen_25_mp_ep: require('./vsOpen/25/mp/ep.jpg'),
-    vsOpen_25_ep_ep: require('./vsOpen/25/ep/ep.jpg'),
+    vsOpen_25_ep1_ep: require('./vsOpen/25/ep1/ep.jpg'),
     // 30bb
     vsOpen_30_sb_bu: require('./vsOpen/30/sb/bu.jpg'),
     vsOpen_30_sb_co: require('./vsOpen/30/sb/co.jpg'),
@@ -344,7 +344,7 @@ const IMAGES = {
     vsOpen_30_mp3_ep: require('./vsOpen/30/mp3/ep.jpg'),
     vsOpen_30_mp_mp: require('./vsOpen/30/mp/mp.jpg'),
     vsOpen_30_mp_ep: require('./vsOpen/30/mp/ep.jpg'),
-    vsOpen_30_ep_ep: require('./vsOpen/30/ep/ep.jpg'),
+    vsOpen_30_ep1_ep: require('./vsOpen/30/ep1/ep.jpg'),
     // 50bb
     vsOpen_50_sb_bu: require('./vsOpen/50/sb/bu.jpg'),
     vsOpen_50_sb_co: require('./vsOpen/50/sb/co.jpg'),
@@ -362,7 +362,7 @@ const IMAGES = {
     vsOpen_50_mp3_ep: require('./vsOpen/50/mp3/ep.jpg'),
     vsOpen_50_mp_mp: require('./vsOpen/50/mp/mp.jpg'),
     vsOpen_50_mp_ep: require('./vsOpen/50/mp/ep.jpg'),
-    vsOpen_50_ep_ep: require('./vsOpen/50/ep/ep.jpg'),
+    vsOpen_50_ep1_ep: require('./vsOpen/50/ep1/ep.jpg'),
     // 100bb
     vsOpen_100_sb_bu: require('./vsOpen/100/sb/bu.jpg'),
     vsOpen_100_sb_co: require('./vsOpen/100/sb/co.jpg'),
@@ -380,7 +380,7 @@ const IMAGES = {
     vsOpen_100_mp3_ep: require('./vsOpen/100/mp3/ep.jpg'),
     vsOpen_100_mp_mp: require('./vsOpen/100/mp/mp.jpg'),
     vsOpen_100_mp_ep: require('./vsOpen/100/mp/ep.jpg'),
-    vsOpen_100_ep_ep: require('./vsOpen/100/ep/ep.jpg'),
+    vsOpen_100_ep1_ep: require('./vsOpen/100/ep1/ep.jpg'),
     
 };
 
