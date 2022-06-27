@@ -9,6 +9,7 @@ const initialActiveState = (active, type) => active === type ? true : false;
 export default function PositionButton({position, top, left, type, autoActive, activeRole, disabled, clickSelectPosition, heroPosition, betterPosition, callerPosition}) {
   const [whoClickInMe, setWhoClickInMe] = useState(() => initialWhoClickInMeState(autoActive,type));
   const [active, setActive] = useState(() => initialActiveState(autoActive, type));
+  const [disabledButton, setDisabledButton] = useState(false)
   
   useEffect(() => {
     switch (activeRole) {
@@ -34,6 +35,23 @@ export default function PositionButton({position, top, left, type, autoActive, a
     }
   }, [whoClickInMe, heroPosition, position, activeRole, betterPosition, callerPosition])
 
+  useEffect(() => {
+      if (disabled[type]?.[activeRole]) {
+        return setDisabledButton(disabled[type][activeRole])
+    }
+    
+    if (disabled[type]?.hasOwnProperty('activeHero') && activeRole === 'better' && disabled[type].activeHero[activeRole].includes(heroPosition)) {
+      return setDisabledButton(true)
+    }
+    if (disabled[type]?.hasOwnProperty('activeHero') && activeRole === 'caller' && disabled[type].activeHero[activeRole]?.includes(heroPosition)) {
+      return setDisabledButton(true)
+    }
+    if (disabled[type]?.hasOwnProperty('activeBetter') && activeRole === 'caller' && disabled[type].activeBetter[activeRole]?.includes(betterPosition)) {
+      return setDisabledButton(true)
+    }
+    return setDisabledButton(false)
+  },[disabled, type, activeRole, heroPosition, position, betterPosition])
+
   const isHandleClickInME = () => {
     if (whoClickInMe && whoClickInMe !== activeRole) {
       return
@@ -49,14 +67,12 @@ export default function PositionButton({position, top, left, type, autoActive, a
     setWhoClickInMe(activeRole)
   }
 
-  const disabledButton = disabled.includes(type)
-  
   return (
     <button
       type="button"
       onClick={isHandleClickInME}
       disabled={disabledButton}
-      className={`${s.positionButton} ${whoClickInMe ? `${s[whoClickInMe]}` : ''} ${active ? s.active : ''} ${ disabledButton ? `${s.disabled}` : ''} `}
+      className={`${s.positionButton} ${whoClickInMe ? `${s[whoClickInMe]}` : ''} ${active ? s.active : ''}  ${ disabledButton && !whoClickInMe ? `${s.disabled}` : ''}`}
       style={{top: top, left: left}}
     >{position.toUpperCase()}</button>
   )
@@ -69,7 +85,7 @@ PositionButton.propTypes = {
   type: PropTypes.string.isRequired,
   autoActive: PropTypes.string,
   activeRole: PropTypes.string.isRequired,
-  disabled: PropTypes.array.isRequired,
+  disabled: PropTypes.object.isRequired,
   clickSelectPosition: PropTypes.func.isRequired,
   heroPosition: PropTypes.string,
   betterPosition: PropTypes.string,
