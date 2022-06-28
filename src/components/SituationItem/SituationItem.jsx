@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import s from './SituationItem.module.scss'
 
-function SituationItem({ title, type, isClickOnTable, isClickInfoModal, index }) {
+function SituationItem({ title, isClickOnTable, isClickInfoModal, index }) {
     return (
         <div className={s.buttonWrapper}>
             <button
@@ -25,9 +25,8 @@ function SituationItem({ title, type, isClickOnTable, isClickInfoModal, index })
 
 SituationItem.propTypes = {
     title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isClickInfoModal: PropTypes.func.isRequired,
     isClickOnTable: PropTypes.func.isRequired,
+    isClickInfoModal: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
 }
 

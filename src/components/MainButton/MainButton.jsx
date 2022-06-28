@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import s from './MainButton.module.scss';
 
 export default function MainButton({ text, onClick, width, height, fontSize, disabled }) {
-    
+
     return (
         <button
             disabled={disabled}
@@ -15,9 +15,11 @@ export default function MainButton({ text, onClick, width, height, fontSize, dis
 }
 
 MainButton.propTypes = {
-    onClick: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
     width: PropTypes.number,
     height: PropTypes.number,
     fontSize: PropTypes.number,
+    disabled: PropTypes.bool
+
 };
