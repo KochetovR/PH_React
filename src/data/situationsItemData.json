@@ -39,7 +39,9 @@
         "description": "The situation when only the small and big blind remained in the game preflop.",
         "type": "bvb",
         "stack": ["20", "25", "30", "50", "100"],
-        "players": ["hero"]
+        "players": ["hero"],
+        "BB_action": ["vs limp", "vs raise"],
+        "SB_action": ["vs iso", "open", "vs 3bet"]
     },
     {
         "title": "RFI",

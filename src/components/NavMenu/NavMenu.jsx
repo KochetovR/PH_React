@@ -27,8 +27,8 @@ const NavMenu = ({ onClose, rotateCloseButton, refa }) => {
 
 NavMenu.propTypes = {
     onClose: PropTypes.func.isRequired,
+    rotateCloseButton: PropTypes.bool,
     refa: PropTypes.any,
-    rotateCloseButton: PropTypes.bool
 };
 
 export default NavMenu;

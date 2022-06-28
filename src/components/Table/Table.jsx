@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import TitleChoosePosition from "components/TitleChoosePosition";
 import PositionButton from "components/PositionButton";
 import RoleSelectButton from "components/RoleSelectButton";
+import BvbAction from "components/BvbAction";
 import StackSizeInput from "components/StackSizeInput";
 import MainButton from "components/MainButton";
 import CloseButton from "components/CloseButton";
@@ -25,6 +26,7 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     const [heroPosition, setHeroPosition] = useState(() => initialHeroPosition(situationIndex));
     const [betterPosition, setBetterPosition] = useState(null);
     const [callerPosition, setCallerPosition] = useState(null);
+    const [bvbAction, setBvbAction] = useState(null);
     const [stackSize, setStackSize] = useState(() => initialStackSize(situationIndex));
     const [disabledCalculateButton, setDisabledCalculateButton] = useState(true)
     const [isResultModalOpen, setIsResultModalOpen] = useState(false);
@@ -40,6 +42,12 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     }, [srcImg])
 
     useEffect(() => {
+        if (!heroPosition) {
+            setBvbAction(null)
+        }
+    }, [heroPosition])
+
+    useEffect(() => {
         switch (typeSituation) {
             case 'bb':
                 setSrcImg(`${typeSituation}_${stackSize}_${betterPosition}`);
@@ -53,10 +61,13 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
             case 'sqz':
                 setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}_${betterPosition}_${callerPosition}`);
                 break;
+            case 'bvb':
+                setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}_${bvbAction}`);
+                break;
             
             default: return setSrcImg(`${typeSituation}_${stackSize}_${heroPosition}`);
         }
-    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition, callerPosition]);
+    }, [typeSituation, stackSize, srcImg, heroPosition, betterPosition, callerPosition, bvbAction]);
 
     const clickSelectPosition = position => {
         switch (activeRole) { 
@@ -77,6 +88,10 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
         setActiveRole(role)
     };
 
+    const changeBvbAction = action => {
+        setBvbAction(action)
+    }
+
     const changeStackSize = e => {
         setStackSize(e)
     };
@@ -92,7 +107,7 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     
     const stack = situationsItemData[situationIndex].stack;
     const players = situationsItemData[situationIndex].players;
-
+    const bvb_action = situationsItemData[situationIndex]
     return (
         <div ref={refa} className={s.tableWrapper}>
             <CloseButton callback={onClose} rotateButton={rotateCloseButton} />
@@ -123,7 +138,16 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
                         <RoleSelectButton key={player} role={player} onClick={handleChangeRole} activeRole={activeRole} />
                     ))}
                 </div>
-                
+                {typeSituation === 'bvb' && heroPosition === 'bb' && <div className={s.actionWrapper}>
+                    {bvb_action.BB_action.map(action => (
+                        <BvbAction key={action} bvbAction={bvbAction} action={action} chooseAction={changeBvbAction} />
+                        ))}
+                </div>}
+                {typeSituation === 'bvb' && heroPosition === 'sb' && <div className={s.actionWrapper}>
+                    {bvb_action.SB_action.map(action => (
+                        <BvbAction key={action} bvbAction={bvbAction} action={action} chooseAction={changeBvbAction} />
+                        ))}
+                </div>}
             </div>
 
             <StackSizeInput stack={stack} changeStack={changeStackSize} />

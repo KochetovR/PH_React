@@ -1,4 +1,5 @@
 @import '../../assets/scss/utils/variables';
+@import '../../assets/scss/utils/placeholder';
 
 .popupBackdrop {
   position: fixed;
@@ -18,9 +19,7 @@
   top: 5%;
   left: 50%;
   transform: translate(-50%, 50px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @extend %flexColum;
   min-height: 160px;
   min-width: 220px;
   padding: 10px 10px;
