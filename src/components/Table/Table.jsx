@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import axios from 'axios';
+// import axios from 'axios';
+import firebase from '../../firebase'
 
 import TitleChoosePosition from "components/TitleChoosePosition";
 import PositionButton from "components/PositionButton";
@@ -33,7 +34,10 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     const [isResultModalOpen, setIsResultModalOpen] = useState(false);
 
     const typeSituation = situationsItemData[situationIndex].type;
-
+    const uploadFiles = async () => {
+        const res = await firebase.storage().ref('bb/15').child('bu.jpg').getDownloadURL()
+        console.log(res);
+    }
     useEffect(() => {
         if (!srcImg) {
             return
@@ -51,6 +55,7 @@ const Table = ({ onClose, situationIndex, rotateCloseButton, refa }) => {
     useEffect(() => {
         switch (typeSituation) {
             case 'bb':
+                uploadFiles()
                 setSrcImg(`${typeSituation}_${stackSize}_${betterPosition}`);
                 break;
             case 'vs3bet':
